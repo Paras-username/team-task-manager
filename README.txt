@@ -9,7 +9,7 @@ for the Full Stack Software Engineer assignment at Ethara AI.
                               LIVE DEMO
 ================================================================================
 
-Frontend URL: https://team-task-manager.vercel.app
+Frontend URL: https://team-task-manager-one-lake.vercel.app
 Backend API:  https://team-task-manager-vj1a.onrender.com/api
 Demo Video:   [PASTE YOUR VIDEO LINK HERE]
 
