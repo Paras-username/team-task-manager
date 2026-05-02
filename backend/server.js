@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -25,8 +24,8 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
 // Test route
-app.get('/', (req, res) => {
-    res.send('Team Task Manager API is running');
+app.get('/api', (req, res) => {
+    res.json({ message: 'Team Task Manager API is running' });
 });
 
 // MongoDB connection
@@ -36,15 +35,16 @@ const connectDB = async () => {
         console.log('MongoDB Connected Successfully');
     } catch (error) {
         console.error('MongoDB Connection Error:', error.message);
-        process.exit(1);
     }
 };
 
-// Start server
-const PORT = process.env.PORT || 5000;
+connectDB();
 
-connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-    });
-});
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+// For Vercel
+module.exports = app;
